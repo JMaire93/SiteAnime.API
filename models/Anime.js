@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+const opts = { toJSON: { virtuals: true } }
 const animeSchema = new mongoose.Schema({
     _id: {type: mongoose.Schema.ObjectId, auto: true},
     name: {
@@ -16,22 +16,23 @@ const animeSchema = new mongoose.Schema({
     finished: Boolean,
     trailer: String,
     description: {
-        fr: {type: String, required: true, maxlength: [1000, 'description trop longue !'], minlength: [50, 'description trop courte !']},
-        en: {type: String, required: true, maxlength: [1000, 'description trop longue !'], minlength: [50, 'description trop courte !']}
+        fr: {type: String, required: true, },
+        en: {type: String, required: true, },
     },
     mainCover: {type: String, required: true},
     covers: [String],
     plateforms: [String],
     startYear: Number,
-    type: {type: String, required: true},
-    birthdate: {type: Date, validate: {
-        validator : function(date) {
-            const dateTime = new Date(date).getTime()
-            return dateTime < Date.now()
-        }, 
-        message: 'Cette date n\'existe pas encore !'
-    }}
-})
+    types: [{type: String, required: true}]
+}, opts)
+
+animeSchema.virtual('episodesTotal').get(function() {
+        let episode = 0
+            this.seasons.forEach(season => {
+                episode += season.episodes
+            })
+    return episode
+    })
 
 const anime = mongoose.model('Anime', animeSchema)
 

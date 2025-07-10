@@ -10,10 +10,14 @@ exports.getAdd = async function (req,res) {
     }
 }
 
-exports.postAdd = async function(req,res) {    
+exports.postAdd = async function(req,res) {   
+    // transformation de notre résultat de checkbox en booléen
     if (req.body.finished === 'on') {req.body.finished = true}
     else {req.body.finished = false}
+    // création d'un tableau de covers à partir du champ rentré dans l'input unique et idem pour les plateformes de diffusion
     req.body.covers = req.body.images.split(" ")
+    req.body.plateforms = req.body.plateforms.split(" ")
+    // création d'une instance d'Animé dans la collection
     try {
        let newAnime = new Anime(req.body)
        let savedAnime = await newAnime.save()

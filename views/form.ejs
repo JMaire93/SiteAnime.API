@@ -14,7 +14,7 @@
             container.innerHTML = ""
     for (let i=0; i<count; i++) {
         container.insertAdjacentHTML('beforeend',`
-        <input name="seasons[${i}][num]" placeholder="numéro de la saison type="number">
+        <input name="seasons[${i}][num]" placeholder="numéro de la saison" type="number">
         <input name="seasons[${i}][episodes]" placeholder="nb d'episodes de la saison" type="number">
         <input name="seasons[${i}][episodeDuration]" placeholder="durée moyenne de l'épisode" type="number">
         <input name="seasons[${i}][cover]" placeholder="url d'image de couverture">`)
@@ -29,11 +29,14 @@
     <input name="mainCover" placeholder="url d'image de couverture">
     <input name="images" placeholder="url d'image séparées par un espace si plusieurs">
     <input name="startYear" placeholder="année de diffusion" type="number">
-    <input name="birthdate" placeholder="birthdate" type="string">
-    <select name="type">
-        <option value="">Choisir un type</option>
+    <input name="plateforms" placeholder="plateformes séparées par espace" type="string">
+    <select multiple name="types[]">
         <option value="Shonen">Shonen</option>
         <option value="Thriller">Thriller</option>
+        <option value="Seinen">Seinen</option>
+        <option value="Horreur">Horreur</option>
+        <option value="Drama">Drama</option>
+        <option value="Romance">Romance</option>
     </select>
     <button type="submit">Valider</button>
 </form>
