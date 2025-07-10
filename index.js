@@ -1,0 +1,17 @@
+const express = require('express')
+const app = express()
+const connectDB = require('./serveurMongo/ConnectDB.js')
+const animes = require('./routers/animeRouter.js')
+const detail = require('./routers/routerDetail.js')
+const ejs = require('ejs')
+const cors = require('cors')
+
+app.set('view engine','ejs')
+
+app.use(express.urlencoded({extended: true}))
+app.use(cors())
+app.use('/animes', animes)
+app.use('/detail', detail)
+
+connectDB()
+app.listen(3000)
