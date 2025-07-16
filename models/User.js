@@ -10,16 +10,17 @@ const userSchema = new mongoose.Schema({
     birthdate: {type: Date, validate: [date => {
         return date <= Date.now()
     }, 'Veuillez utiliser une date de naissance valide !']},
-    role: {type: String, enum: {values: ['user', 'admin'], message: 'Le rôle renseigné n\'est pas valide', default: 'user'}
-    }
+    // role: {type: String, enum: {values: ['', 'admin'], message: 'Le rôle renseigné n\'est pas valide', default: 'admin'}
+    role: String
 })
 
-userSchema.pre('save', async function(next) {
-    if (this.isModified('password')) {
-        const hashedPassword = await bcrypt.hash(this.password, 10)
-        this.password = hashedPassword
-    }
-})
+// userSchema.pre('save', async function(next) {
+//     if (this.isModified('password')) {
+//         const hashedPassword = await bcrypt.hash(this.password, 10)
+//         this.password = hashedPassword
+//     }
+//     next()
+// })
 
 const user = mongoose.model('User', userSchema)
 

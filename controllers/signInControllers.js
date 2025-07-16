@@ -3,11 +3,10 @@ const User = require('../models/User')
 
 exports.postSignIn = async function(req,res) {   
     // création d'une instance de User dans la collection Users
-    console.log(req.body)
     try {
        let newUser = new User(req.body)
        let savedUser = await newUser.save()
-       res.redirect('http://localhost:5173/detail')
+       res.end()
     } catch (error) {
         throw error
     }
