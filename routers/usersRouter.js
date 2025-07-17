@@ -1,0 +1,7 @@
+const express = require('express')
+const router = express.Router()
+const controller = require('../controllers/usersControllers')
+
+router.get("/:id", controller.showUser)
+
+module.exports = router

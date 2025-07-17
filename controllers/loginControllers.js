@@ -8,12 +8,12 @@ exports.postLogin = async function(req,res) {
        const user = await User.findOne({email: req.body.email})
        const token = jwt.sign( {id: user._id, role: user.role} , 'shhhhh')
        console.log(user)
+       console.log(token)
        const decoded = jwt.verify(token, 'shhhhh');
        console.log(decoded)
        if (!user) return console.log('Pas d\'utilisateur correspondant')
        if (user.password === req.body.password) {
         res.send(decoded)
-        // res.redirect('/admin')
        }
        else return console.log('Pas d\'utilisateur correspondant')
     } catch (error) {
