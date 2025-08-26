@@ -11,7 +11,3 @@ exports.postSignIn = async function(req,res) {
         throw error
     }
 }
-
-exports.coucou = async function (req,res) {
-    res.send('<h1>Coucou</h1>')
-}

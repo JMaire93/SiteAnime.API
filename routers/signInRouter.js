@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const controller = require('../controllers/signInControllers')
+const UserValidator = require('../joiValidators/UserValidator')
 
 router.post("/", controller.postSignIn)
-router.get("/", controller.coucou)
 
 module.exports = router
