@@ -3,6 +3,6 @@ const router = express.Router()
 const controller = require('../controllers/signInControllers')
 const UserValidator = require('../joiValidators/UserValidator')
 
-router.post("/", controller.postSignIn)
+router.post("/", UserValidator, controller.postSignIn)
 
 module.exports = router

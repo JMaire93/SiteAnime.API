@@ -6,8 +6,7 @@ exports.postLogin = async function(req,res) {
     console.log(req.body)
     try {
        const user = await User.findOne({email: req.body.email})
-       const token = jwt.sign( {id: user._id, role: user.role} , 'shhhhh')
-       console.log(user)
+       const token = jwt.sign( {id: user._id, role: user.role, animes: user.animes.map((ani=>ani.anime))} , 'shhhhh')
        console.log(token)
        const decoded = jwt.verify(token, 'shhhhh');
        console.log(decoded)
