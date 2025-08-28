@@ -6,7 +6,6 @@ exports.showUser = async function (req, res) {
         const user = await User.findById(req.params.id)
         .populate('animes.anime',{
             _id: 0,
-            popularity: 0,
             trailer: 0,
             description: 0,
             mainCover: 0,
