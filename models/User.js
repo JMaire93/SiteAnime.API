@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
         actualEpisode: {type: Number, required: true},
         HS: Boolean
     }],
+    avatarImg: String,
     // birthdate: {type: Date, validate: [date => {
     //     return date <= Date.now()
     // }, 'Veuillez utiliser une date de naissance valide !']},

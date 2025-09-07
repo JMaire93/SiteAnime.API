@@ -12,6 +12,7 @@ const session = require('express-session')
 const ejs = require('ejs')
 const cors = require('cors')
 
+app.use(express.static('uploads'))
 app.set('view engine','ejs')
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))

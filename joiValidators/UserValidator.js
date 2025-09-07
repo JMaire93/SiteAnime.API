@@ -1,7 +1,5 @@
 const Joi = require('joi')
 
-module.exports = (req, res, next) =>{
-
     const animeSchema = Joi.object({
         anime: Joi.string().required(),
         priority: Joi.string().required(),
@@ -9,7 +7,7 @@ module.exports = (req, res, next) =>{
         HS: Joi.boolean().required()
     })
 
-    const validatorUser = Joi.object({
+    module.exports = Joi.object({
         name: Joi.string()
                 .alphanum()
                 .min(3)
@@ -20,18 +18,8 @@ module.exports = (req, res, next) =>{
         password: Joi.string()
                 .pattern(new RegExp('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$')),
         animes: Joi.array().items(animeSchema),
-        role: Joi.string()
+        role: Joi.string(),
+        avatarImg: Joi.any()
     })
 
-    const { error } = validatorUser.validate(req.body);
-
-    if (error) {
-        console.log('Erreur Joi :', error.details)
-        return  res.status(400).json({ error : error.details[0].message})
-    }
-    else {
-        console.log('validation OK')
-        next()
-    }
     
-}
